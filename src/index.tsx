@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { createStore } from "redux";
 import counter from "./reducers";
 import rootReducer from "./reducers";
+import { Provider } from "react-redux";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -18,18 +19,20 @@ store.dispatch({
   text: ["Use Redux And combineReducers"],
 });
 
-console.log(store.getState())
+console.log(store.getState());
 // getState()를 통해 현재 state를 가져올 수 있다.
 
 // 그리고 disptach()를 이용해 action을 넣어서 disptach 하여 상태를 업데이트 할 수 있다.
 const render = () =>
   root.render(
     <React.StrictMode>
-      <App
-        value={store.getState()}
-        onIncrement={() => store.dispatch({ type: "INCREMENT" })}
-        onDecrement={() => store.dispatch({ type: "DECREMENT" })}
-      />
+      <Provider store={store}>
+        <App
+          value={store.getState()}
+          onIncrement={() => store.dispatch({ type: "INCREMENT" })}
+          onDecrement={() => store.dispatch({ type: "DECREMENT" })}
+        />
+      </Provider>
     </React.StrictMode>
   );
 render();
