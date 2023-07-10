@@ -14,10 +14,7 @@ const root = ReactDOM.createRoot(
 
 // 작성한 리듀서를 넣는다
 const store = createStore(rootReducer);
-store.dispatch({
-  type: "ADD_TODO",
-  text: ["Use Redux And combineReducers"],
-});
+
 
 console.log(store.getState());
 // getState()를 통해 현재 state를 가져올 수 있다.
